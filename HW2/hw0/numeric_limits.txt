@@ -1,0 +1,18 @@
+#include <iostream>
+static int count = 0;
+int fib(int n){
+	count++;
+	//print it here to print every time
+	//but i decided to the challenge thing
+	//you put at the end
+	if(n == 0 || n == 1){
+		return n;
+	}
+	return fib(n-1)+fib(n-2);
+
+}
+int main(){
+	fib(20);
+	std::cout<<count<<std::endl;
+	return 0;
+}
