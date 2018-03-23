@@ -9,30 +9,30 @@ public:
 };
 
 MyArray::MyArray(){
-	std::cout << "Hello, World!" << std::endl;
+	pint = new int[3];
+	for(int i = 0; i < 3; i++){
+		pint[i] = 0;
+	}
 };
 
 MyArray::MyArray(int x, int y, int z){
-	int p = new int[3];
-
-	p[0] = new int[x];
-	p[1] = new int[y];
-	p[2] = new int[z];
-	int size = sizeof(p)/sizeof(*p);
-	for(int i = 0; i < size; i++){
-		std::cout << *p << std::endl;
-	}
-
+	pint = new int[3];
+	pint[0] = x;
+	pint[1] = y;
+	pint[2] = z;
 };
 
 MyArray::~MyArray(){
-	std::cout << "Destructing x, y, z!" << std::endl;
+	std::cout << "destructing: " << pint[0] << " " << pint[1] << " " << pint[2] << std::endl;
+	delete [] pint;
+	pint = NULL;
 };
 
 
 int main(){
 
-	MyArray ma(1,2,3);
+	MyArray ma(1,2,3), p;
+
 
 	return 0;
 }
