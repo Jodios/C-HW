@@ -6,58 +6,44 @@
 #include <iostream>
 #include <string>
 
-class Person{
-	std::string name;
-	int age;
-public:
-	Person(std::string n, int a) : name(n), age(a){}
-	std::string getName(){return name;}
-	int getAge(){return age;}
-};
 
-class Employee : public Person{
+class Employee{
+protected:
+	std::string name;
+	short age;
 	bool fullTime;
 	std::string dept;
 	float wage;
 public:
-	Employee(bool f, std::string d, float w) : fullTime(f), dept(d), wage(w){}
+	Employee(bool f, std::string d, float w, std::string n, short a) : name(n), age(a), fullTime(f), dept(d), wage(w){}
 	bool getFullTime(){return fullTime;}
 	std::string getDept(){return dept;}
 	float getWage(){return wage;}
 
 };
 
-// class Faculty : public Person, public Employee{
-// 	bool hasTenure;
-// public:
-// 	Faculty(std::string name, int age, bool fullTime, std::string dept, float wage, bool h) : Person(name, age), Employee(fullTime, dept, wage), hasTenure(h){}
-// 	void printAll(){
-// 		std::cout << "Name:\t\t" << getName() << "\tage: " << getAge();
-// 		std::cout << "\t\tFull Time:" << getFullTime() << std::endl;
-// 		std::cout << "Department:\t" << getDept() << "\twage: " << getWage();
-// 		std::cout << "\tHas tenure:" << hasTenure() << std::endl;;
-// 	}
-// };
- 
 class Faculty : public Employee {
 	bool hasTenure;
 public:
-	Faculty(std::string name, int age, bool fullTime, std::dept, float wage, bool h)
-	:Person(name, age),
-	Employee(fullTime, dept, wage),
+	Faculty(std::string name, int age, bool fullTime, std::string dept, float wage, bool h):
+	Employee(fullTime, dept, wage, name, age),
 	hasTenure(h){}
 
 	void printAll(){
-		std::cout << "Name:\t\t" << getName() << "\tage: " << getAge();
+		std::cout << "Name:\t\t" << name << "\tage: " << age;
 		std::cout << "\t\tFull Time:" << getFullTime() << std::endl;
 		std::cout << "Department:\t" << getDept() << "\twage: " << getWage();
-		std::cout << "\tHas tenure:" << hasTenure() << std::endl;;
+		std::cout << "\tHas tenure:" << hasTenure << "\nAdress: " << this << "\n" << std::endl;;
 	}																				   
 };
 
-
 int main(){
 	Faculty f("Socrates", 42, true, "Philosophy", 80000, false);
+	Faculty f2("Nessy", 350, true, "Girl Scout", 3.50, false);
+	std::cout << "Before assignment" << std::endl;
+	f2.printAll();
+	f2 = f;
 	f.printAll();
+	f2.printAll();
 	return 0;
 }
